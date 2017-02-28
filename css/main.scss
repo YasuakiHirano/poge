@@ -1,0 +1,69 @@
+$iconBorderColor:#ebebeb;
+
+.right-text{
+    width:100%;
+    text-align:right;
+}
+
+.left-text{
+    width:100%;
+    text-align:left;
+}
+
+.icon-circle{
+    height:80px;
+    width:80px;
+    border:1px solid $iconBorderColor;
+    border-radius:80px;
+}
+
+.icon-area{
+    height:70px;
+    margin-top:2px;
+    margin-left:2px;
+}
+
+.message-open{
+    text-align:center;
+    padding-top:13px;
+    height:55px;
+    width:200px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+// 投稿/返信メッセージ
+.message-date{
+    width:100%;
+    margin-bottom:10px;
+    text-align:right;
+}
+
+.message-left-image{
+    float:left;
+    width:90px;
+    margin-bottom:10px;
+}
+
+.message-left-name{
+    color:#666666;
+    font-size:90%;
+    text-align:center;
+    margin:10px 0px 0px -5px;
+    width:100%;
+}
+
+.message-area{
+    float:left;
+    margin-left:10px;
+    width:85%;
+    background: #ffffff;
+    border: 1px solid $iconBorderColor;
+    border-radius:13px;
+    min-height:100px;
+    padding:15px;
+    word-wrap: break-word;
+    white-space: normal;
+    display: block;
+}
+

@@ -1,0 +1,138 @@
+#!/usr/bin/env php
+<?php
+    require_once './config.php';
+    $classDr = CLASS_FILE_DELIMTER;
+    $modelDr = MODEL_FILE_DELIMTER;
+    $viewDr = VIEW_FILE_DELIMTER;
+
+    function br($str = ''){
+        echo $str."\n";
+    }
+
+    function brRed($str){
+        echo "\033[0;31m$str\033[0m"."\n";
+    }
+
+    function brBlue($str){
+        echo "\033[0;34m$str\033[0m"."\n";
+    }
+
+    function argvValidate(){
+        global $argv;
+        if(empty($argv[2] or $argv[3])){
+            br("引数がないため、処理を終了します。");
+            exit;
+        }
+    }
+
+    function copyClass(){
+        global $argv, $classDr;
+        argvValidate();
+        $res = `cp ./controll/{$argv[2]}{$classDr}.php  ./controll/{$argv[3]}{$classDr}.php`;
+        echo $res, PHP_EOL;
+        br("cp ./controll/{$argv[2]}{$classDr}.php  ./controll/{$argv[3]}{$classDr}.php");
+    }
+
+    function copyModel(){
+        global $argv, $modelDr;
+        argvValidate();
+        $res = `cp ./model/{$argv[2]}{$modelDr}.php  ./model/{$argv[3]}{$modelDr}.php`;
+        echo $res, PHP_EOL;
+        br("cp ./model/{$argv[2]}{$modelDr}.php  ./model/{$argv[3]}{$modelDr}.php");
+    }
+
+    function copyView(){
+        global $argv, $viewDr;
+        argvValidate();
+        $res = `cp ./view/{$argv[2]}{$viewDr}.php  ./view/{$argv[3]}{$viewDr}.php`;
+        echo $res, PHP_EOL;
+        br("cp ./view/{$argv[2]}{$viewDr}.php  ./view/{$argv[3]}{$viewDr}.php");
+    }
+    
+    function inputConfigData($data, $cnt, $defineName){
+        echo "=>"; 
+        $stdin = trim(fgets(STDIN));
+        return "define({$defineName} , '{$stdin}');\n";
+    }
+
+    if($argc <= 1){
+        br("引数がないため処理を終了します。");
+        return false;
+    }
+
+    switch($argv[1]){
+        case '-v':
+            br("firesign version 1.1");
+            break;
+        case '-h':
+            br("setboard        : 掲示板の設置を開始します。");
+            br("-h              : ヘルプ");
+            br("-v              : バージョン情報");
+            br("-acp source dist: クラス・モデル・ビューを一括コピーします。");
+            br("-ccp source dist: コントロールファイルをコピーします。");
+            br("-mcp source dist: モデルファイルをコピーします。");
+            br("-vcp source dist: ビューファイルをコピーします。");
+            break;
+        case '-ccp':
+            br("コントロールファイルコピー開始");
+            copyClass();
+            br("コントロールファイルコピー終了");
+            break;
+         case '-mcp':
+            br("モデルファイルコピー開始");
+            copyModel();
+            br("モデルファイルコピー終了");
+            break;
+        case '-acp':
+            brBlue('クラス・モデル・ビューの一括コピー開始');
+            copyClass();
+            copyModel();
+            copyView();
+            brBlue('クラス・モデル・ビューの一括コピー終了');
+            break;
+        case 'setboard':
+            brBlue('掲示板設置開始 (config.phpの内容を書き換えています...)');
+            $data = file("config.php");
+            $cnt = 0;
+            foreach($data as $oneline){
+
+              if(strpos($oneline,'HOST_NAME') !== false){
+                brRed("#####データベース（MySql)の設定を行います#####");
+                brRed("ホストを入力してください。 ");
+                brRed("デフォルトはlocalhostです。");
+                $data[$cnt] = inputConfigData($data, $cnt, 'HOST_NAME');
+                br();
+              }
+
+              if(strpos($oneline,'USER_NAME') !== false){
+                brRed("ユーザー名を入力してください。 ");
+                brRed("デフォルトはrootです。");
+                $data[$cnt] = inputConfigData($data, $cnt, 'USER_NAME');
+                br();
+              }
+
+              if(strpos($oneline,'PASSWORD') !== false){
+                brRed("パスワードを入力してください。 ");
+                $data[$cnt] = inputConfigData($data, $cnt, 'PASSWORD');
+                br();
+              }
+
+              if(strpos($oneline,'DATABASE') !== false){
+                brRed("データベース名を入力してください。 ");
+                $data[$cnt] = inputConfigData($data, $cnt, 'DATABASE');
+                br();
+              }
+
+              if(strpos($oneline,'SYSTEM_ROOT') !== false){
+                brRed("#####配置場所の設定を行います#####");
+                brRed("配置ディレクトリを入力してください。（ルート'/'から'/home/user/www/poge'など)");
+                $data[$cnt] = inputConfigData($data, $cnt, 'SYSTEM_ROOT');
+              }
+
+              $cnt++;
+            }
+            file_put_contents('config.php', $data);
+            brBlue('掲示板設置完了');
+
+            break;
+    }
