@@ -33,3 +33,6 @@ DB情報・配置ディレクトリのパス・ページ名を入力し、config
 ```
 ./console setboard  
 ```
+  
+デモ環境
+http://tools.codelike.info/poge/index.php
