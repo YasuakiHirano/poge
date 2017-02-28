@@ -6,7 +6,6 @@
 class topCtl extends fireSignCtl
 {
     private $topMdl = null;
-    private $pageTitle = 'poge';
 
     function __construct(){
         parent::__construct();
@@ -17,7 +16,7 @@ class topCtl extends fireSignCtl
     {
         // 投稿済みのタイトルを取得
         $data = $this->topMdl->getBoard();
-        $this->viewData = array('title' => $this->pageTitle, "listData" => $data); 
+        $this->viewData = array("listData" => $data); 
 
         // top view表示
         $this->showView('topView');

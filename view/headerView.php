@@ -4,4 +4,4 @@
         <script type="text/javascript" src="<?php echo JS_DIR; ?>jquery-2.0.3.js"></script>
         <script type="text/javascript" src="<?php echo JS_DIR; ?>common.js"></script>
         <link media="all" rel="stylesheet" href="./common/bootstrap4/dist/css/bootstrap.min.css" type="text/css" />
-        <title><?php echo $title ?></title>
+        <title><?php echo PAGE_TITLE ?></title>

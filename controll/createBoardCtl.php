@@ -6,7 +6,6 @@
 class createBoardCtl extends fireSignCtl
 {
     private $topMdl = null;
-    private $pageTitle = 'poge';
 
     function __construct(){
         parent::__construct();
@@ -15,7 +14,7 @@ class createBoardCtl extends fireSignCtl
 
     function mainAct()  
     {
-        $this->viewData = array('title' => $this->pageTitle , 'board_titles' => $titles);
+        $this->viewData = array('board_titles' => $titles);
 
         // top view表示
         $this->showView('createBoardView');
@@ -46,7 +45,7 @@ class createBoardCtl extends fireSignCtl
             $returnTag = '<a href="index.php?page=createBoard&action=main">'.
                             '<button type="button" class="btn btn-default btn-block">戻る</button>'.
                          '</a>';
-            $this->viewData = array('title' => $this->pageTitle , 'error' => $res ,'returnTag' => $returnTag);
+            $this->viewData = array('error' => $res ,'returnTag' => $returnTag);
             $this->showView('errorView');
         }
     }

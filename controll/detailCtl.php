@@ -6,7 +6,6 @@
 class detailCtl extends fireSignCtl
 {
     private $detailMdl = null;
-    private $pageTitle = 'poge';
 
     function __construct(){
         parent::__construct();
@@ -64,7 +63,7 @@ class detailCtl extends fireSignCtl
             $returnTag = '<a href="index.php?page=detail&action=main&id='.$id.'">'.
                             '<button type="button" class="btn btn-default btn-block">戻る</button>'.
                          '</a>';
-            $this->viewData = array('title' => $this->pageTitle , 'error' => $res ,'returnTag' => $returnTag);
+            $this->viewData = array('error' => $res ,'returnTag' => $returnTag);
             $this->showView('errorView');
         }
     }
@@ -75,13 +74,13 @@ class detailCtl extends fireSignCtl
 
         if($result){
             $this->detailMdl->deleteBoard($postVal['delId']);
-            $this->viewData = array('title' => $this->pageTitle , 'messageTitle' => '削除確認','message' => '削除しました。');
+            $this->viewData = array('messageTitle' => '削除確認','message' => '削除しました。');
             $this->showView('confirmView');
         } else {
             $returnTag = '<a href="index.php?page=detail&action=main&id='.$postVal['delId'].'">'.
                             '<button type="button" class="btn btn-default btn-block">戻る</button>'.
                          '</a>';
-            $this->viewData = array('title' => $this->pageTitle , 'error' => 'パスワードが間違っています。' ,'returnTag' => $returnTag);
+            $this->viewData = array('error' => 'パスワードが間違っています。' ,'returnTag' => $returnTag);
             $this->showView('errorView');
         }
     }

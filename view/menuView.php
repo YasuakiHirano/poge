@@ -1,5 +1,5 @@
         <nav class="navbar navbar-dark bg-primary">
-           <a class="navbar-brand" href="index.php">Poge</a>
+           <a class="navbar-brand" href="index.php"><?php echo PAGE_TITLE ?></a>
            <ul class="nav navbar-nav">
              <li class="nav-item <?php echo $this->pageName == 'topCtl' ? 'active' : '' ?>">
                   <a class="nav-link" href="index.php">ホーム</a>

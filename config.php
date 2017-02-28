@@ -11,13 +11,14 @@ define(DB_USE, "1");
 
 // MySql or Postgresql
 define(DB_NAME, "MySql");
-define(HOST_NAME, "localhost");
-define(USER_NAME, "root");
-define(PASSWORD, "password");
-define(DATABASE, "poge");
+define(HOST_NAME , 'localhost');
+define(USER_NAME , 'root');
+define(PASSWORD , 'password');
+define(DATABASE , 'poge');
 header('Content-Type: text/html; charset=UTF-8');
-define("SYSTEM_ROOT","/home/user/www/poge");
-//define("SITE_URL","http://tool.codelike.info/poge/");
+define(SYSTEM_ROOT , '/home/user/www/poge');
+define(PAGE_TITLE , 'Poge');
+//define("SITE_URL","http://tools.codelike.info/poge/");
 define("CLASS_FILE_DELIMTER","Ctl");
 define("MODEL_FILE_DELIMTER","Mdl");
 define("VIEW_FILE_DELIMTER","View");

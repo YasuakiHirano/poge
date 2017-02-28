@@ -129,6 +129,12 @@
                 $data[$cnt] = inputConfigData($data, $cnt, 'SYSTEM_ROOT');
               }
 
+              if(strpos($oneline,'PAGE_TITLE') !== false){
+                brRed("#####ページの設定を行います#####");
+                brRed("ページタイトルを入力してください。");
+                $data[$cnt] = inputConfigData($data, $cnt, 'PAGE_TITLE');
+              }
+
               $cnt++;
             }
             file_put_contents('config.php', $data);
